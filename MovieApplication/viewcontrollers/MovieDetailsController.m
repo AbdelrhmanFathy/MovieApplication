@@ -201,10 +201,12 @@ UIImageView *fav;
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(_mMovieTrailers.count>1)
-    {
+    @try{
     if (indexPath.row>=(4+_mMovieReviews.count)||indexPath.row<(4+_mMovieReviews.count+_mMovieTrailers.count))
     {
+    if(_mMovieTrailers.count>1)
+    {
+   
         long w=indexPath.row - 4-1 - _mMovieReviews.count;
     
         NSString *mID=[_mMovieTrailers objectAtIndex:w];
@@ -214,6 +216,9 @@ UIImageView *fav;
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:webStringURL] options:@{} completionHandler:nil];
        
     }
+    }}
+    @catch(NSException *b){
+        
     }
 }
 @end
